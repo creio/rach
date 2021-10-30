@@ -1,0 +1,42 @@
+name: build
+
+on:
+  push:
+  pull_request:
+
+  schedule:
+    - cron: "0 0 1 * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: archlinux
+      options: --privileged
+      volumes:
+        - /sys/fs/cgroup:/sys/fs/cgroup
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Build iso
+      run: bash build.sh"
+
+    - name: Update env
+      run: echo "BUILD_TAG=$(date +%Y%m%d)" >> $GITHUB_ENV
+
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v1
+      with:
+        name: ${{ env.BUILD_TAG }}
+        path: out/*
+
+    - name: Create release
+      # if: ${{ github.event_name == 'schedule' }}
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          out/archlinux-${{ env.BUILD_TAG }}-x86_64.iso
+        tag_name: ${{ env.BUILD_TAG }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
