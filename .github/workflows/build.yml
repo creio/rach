@@ -25,21 +25,26 @@ jobs:
         echo "${{ env.image_name }}"
         echo "BUILD_TAG=$(date +%Y.%m.%d)" >> $GITHUB_ENV
 
+    - name: Update env
+      run: |
+        echo "BUILD_TAG=$(date +%Y.%m.%d)" >> $GITHUB_ENV
+        echo "${{ env.image_name }}"
+
     - name: Upload Artifacts
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v2
       with:
         name: ${{ env.BUILD_TAG }}
         path: |
-          out/archlinux-${{ env.BUILD_TAG }}-x86_64.iso
-          out/archlinux-${{ env.BUILD_TAG }}-x86_64.iso.sha256
+          /out/archlinux-${{ env.BUILD_TAG }}-x86_64.iso
+          /out/archlinux-${{ env.BUILD_TAG }}-x86_64.iso.sha256
 
     - name: Create release
       # if: ${{ github.event_name == 'schedule' }}
       uses: softprops/action-gh-release@v1
       with:
         files: |
-          out/archlinux-${{ env.BUILD_TAG }}-x86_64.iso
-          out/archlinux-${{ env.BUILD_TAG }}-x86_64.iso.sha256
+          /out/archlinux-${{ env.BUILD_TAG }}-x86_64.iso
+          /out/archlinux-${{ env.BUILD_TAG }}-x86_64.iso.sha256
         tag_name: ${{ env.BUILD_TAG }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
