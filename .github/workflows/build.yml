@@ -20,7 +20,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Build iso
-      run: bash build.sh"
+      run: bash build.sh
 
     - name: Update env
       run: echo "BUILD_TAG=$(date +%Y%m%d)" >> $GITHUB_ENV
