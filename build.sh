@@ -11,5 +11,8 @@ mkarchiso -v -w ./work -o /out /usr/share/archiso/configs/releng/
 if [[ -e "/out/$img_name" ]]; then
   echo "create SHA 256"
   sha256sum /out/$image_name >> /out/$image_name.sha256
+
+  echo "add gh env"
+  echo "BUILD_TAG=$(date +%Y.%m.%d)" >> $GITHUB_ENV
   echo "image_name=$image_name" >> $GITHUB_ENV
 fi
