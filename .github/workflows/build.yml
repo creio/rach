@@ -22,10 +22,8 @@ jobs:
     - name: Build iso
       run: |
         bash build.sh
-        echo $image_name
-
-    - name: Update env
-      run: echo "BUILD_TAG=$(date +%Y%m%d)" >> $GITHUB_ENV
+        echo "${{ env.image_name }}"
+        echo "BUILD_TAG=$(date +%Y.%m.%d)" >> $GITHUB_ENV
 
     - name: Upload Artifacts
       uses: actions/upload-artifact@v1
