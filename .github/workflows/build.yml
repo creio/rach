@@ -31,7 +31,9 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: ${{ env.BUILD_TAG }}
-        path: out/*
+        path: |
+          out/archlinux-${{ env.BUILD_TAG }}-x86_64.iso
+          out/archlinux-${{ env.BUILD_TAG }}-x86_64.iso.sha256
 
     - name: Create release
       # if: ${{ github.event_name == 'schedule' }}

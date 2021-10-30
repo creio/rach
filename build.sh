@@ -10,6 +10,6 @@ mkarchiso -v -w ./work -o ./out /usr/share/archiso/configs/releng/
 
 if [[ -e "./out/$img_name" ]]; then
   echo "create SHA 256"
-  sha256sum out/$image_name >> out/$image_name.sha256
+  sha256sum ./out/$image_name >> ./out/$image_name.sha256
   export image_name=$image_name
 fi
