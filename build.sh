@@ -5,8 +5,21 @@ image_name="archlinux-$(date +%Y.%m.%d)-x86_64.iso"
 echo "install pkg"
 pacman -Syy git archiso mkinitcpio-archiso --noconfirm --needed
 
+build_iso() {
+  pacman -Scc --noconfirm --quiet
+  rm -rf /var/cache/pacman/pkg/*
+  pacman-key --init
+  pacman-key --populate
+  pacman -Syy --quiet
+
+  [[ $(grep chroot.sh /usr/bin/mkarchiso) ]] || \
+  sed -i "/_mkairootfs_squashfs()/a [[ -e "$\{profile\}/chroot.sh" ]] && $\{profile\}/chroot.sh" /usr/bin/mkarchiso
+
+  mkarchiso -v -w ./work -o /out /usr/share/archiso/configs/releng/
+}
+
 echo "build iso"
-mkarchiso -v -w ./work -o /out /usr/share/archiso/configs/releng/
+build_iso
 
 if [[ -e "/out/$img_name" ]]; then
   echo "create SHA 256"
