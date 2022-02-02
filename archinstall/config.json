@@ -25,7 +25,7 @@
     "keyboard-language": "us",
     "keyboard-layout": "us",
     "timezone": "Europe/Moscow",
-    "packages": ["docker", "git", "zsh"],
+    "packages": ["nano", "docker", "git", "zsh"],
     "custom-commands": [
         "cd /home/creio; git clone https://aur.archlinux.org/yay-bin.git",
         "chown -R creio:users /home/creio/yay-bin",
