@@ -1,0 +1,41 @@
+{
+    "audio": "pulseaudio",
+    "bootloader": "systemd-bootctl",
+    "gfx_driver": "All open-source (default)",
+    "!encryption-password": "1111",
+    "filesystem": "btrfs",
+    "harddrives": [
+        "/dev/sda"
+    ],
+    "swap": true,
+    "hostname": "box",
+    "kernels": [
+        "linux"
+    ],
+    "mirror-region": "Worldwide",
+    "nic": {
+        "NetworkManager": true
+    },
+    "ntp": true,
+    "packages": ["docker", "git", "wget", "zsh"],
+    "profile": "minimal",
+    "script": "guided",
+    "services": ["docker"],
+    "sys-encoding": "utf-8",
+    "sys-language": "en_US",
+    "keyboard-language": "us",
+    "keyboard-layout": "us",
+    "timezone": "Europe/Moscow",
+    "custom-commands": [
+        "cd /home/creio; git clone https://aur.archlinux.org/yay-bin.git",
+        "chown -R creio:users /home/creio/yay-bin",
+        "usermod -g users -aG docker creio"
+    ],
+    "!root-password": "1",
+    "!users": {
+        "cretm": {"!password": "11"}
+    },
+    "!superusers": {
+        "creio": {"!password": "1"}
+    }
+}
