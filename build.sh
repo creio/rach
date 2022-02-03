@@ -17,6 +17,7 @@ build_iso() {
   echo $PWD
   [[ $(grep chroot.sh /usr/bin/mkarchiso) ]] || \
   sed -i "/_mkairootfs_squashfs()/a [[ -e "$\{profile\}/chroot.sh" ]] && $\{profile\}/chroot.sh" /usr/bin/mkarchiso
+  cat /usr/bin/mkarchiso | grep chroot.sh
   echo "START mkarchiso"
   mkarchiso -v -w ./work -o /out /usr/share/archiso/configs/releng/
 }
