@@ -18,7 +18,7 @@ exit 0
 
 #chroot
 isouser="liveuser"
-OSNAME="ctlos"
+OSNAME="rach"
 
 _conf() {
   ln -sf /usr/share/zoneinfo/UTC /etc/localtime
@@ -76,24 +76,24 @@ _key() {
 
 _drsed() {
   sed -i /etc/lsb-release \
-    -e 's|distrib_id=.*|distrib_id=ctlos|' \
+    -e 's|distrib_id=.*|distrib_id=rach|' \
     -e 's|distrib_release=.*|distrib_release=rolling|' \
     -e 's|distrib_codename=.*|distrib_codename=anon|' \
-    -e 's|distrib_description=.*|distrib_description=\"ctlos linux\"|'
+    -e 's|distrib_description=.*|distrib_description=\"rach linups\"|'
 
   sed -i /usr/lib/os-release \
-    -e 's|name=.*|name=\"ctlos linux\"|' \
-    -e 's|pretty_name=.*|pretty_name=\"ctlos linux\"|' \
-    -e 's|id=.*|id=ctlos|' \
-    -e 's|id_like=.*|id_like=arch|' \
+    -e 's|name=.*|name=\"rach linups\"|' \
+    -e 's|pretty_name=.*|pretty_name=\"rach linups\"|' \
+    -e 's|id=.*|id=rach|' \
+    -e 's|id_like=.*|id_like=rach|' \
     -e 's|build_id=.*|build_id=rolling|' \
-    -e 's|home_url=.*|home_url=\"https://ctlos.github.io\"|' \
-    -e 's|documentation_url=.*|documentation_url=\"https://ctlos.github.io/wiki\"|' \
-    -e 's|support_url=.*|support_url=\"https://forum.ctlos.ru\"|' \
-    -e 's|bug_report_url=.*|bug_report_url=\"https://github.com/ctlos/ctlosiso/issues\"|' \
-    -e 's|logo=.*|logo=ctlos|'
+    -e 's|home_url=.*|home_url=\"https://rach.github.io\"|' \
+    -e 's|documentation_url=.*|documentation_url=\"https://rach.github.io/wiki\"|' \
+    -e 's|support_url=.*|support_url=\"https://forum.rach.ru\"|' \
+    -e 's|bug_report_url=.*|bug_report_url=\"https://github.com/creio/rach/issues\"|' \
+    -e 's|logo=.*|logo=rach|'
 
-  sed -i 's|Arch|Ctlos|g' /etc/issue /usr/share/factory/etc/issue
+  sed -i 's|Arch|Rach|g' /etc/issue /usr/share/factory/etc/issue
 }
 
 _serv() {
@@ -119,15 +119,15 @@ _serv() {
 _conf
 _perm
 _liveuser
-_nm
+# _nm
 _key
 _drsed
-_serv
+# _serv
 
-# sed -i 's|GRUB_DISTRIBUTOR=.*|GRUB_DISTRIBUTOR=\"Ctlos\"|' /etc/default/grub
+# sed -i 's|GRUB_DISTRIBUTOR=.*|GRUB_DISTRIBUTOR=\"Rach\"|' /etc/default/grub
 # sed -i 's|\#GRUB_THEME=.*|GRUB_THEME=\/boot\/grub\/themes\/crimson\/theme.txt|g' /etc/default/grub
 # echo 'GRUB_DISABLE_SUBMENU=y' >> /etc/default/grub
-# wget https://github.com/ctlos/ctlos-sh/raw/master/cleaner.sh
+# wget https://github.com/rach/rach-sh/raw/master/cleaner.sh
 # chmod +x cleaner.sh
 # mv cleaner.sh /usr/local/bin/
 
