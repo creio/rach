@@ -2,10 +2,10 @@
 set -e -u
 
 script_path=$(readlink -f ${0%/*})
-work_dir=${script_path}/work/x86_64/airootfs
+work_dir=/usr/share/archiso/configs/releng/work/x86_64/airootfs
 
 echo "==== create settings.sh ===="
-sed '1,/^#chroot$/d' ${script_path}/chroot.sh >${work_dir}/settings.sh
+sed '1,/^#chroot$/d' /usr/share/archiso/configs/releng/chroot.sh >${work_dir}/settings.sh
 
 chrooter() {
   arch-chroot ${work_dir} /bin/bash -c "${1}"
