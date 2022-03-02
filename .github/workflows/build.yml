@@ -34,25 +34,25 @@ jobs:
         name: ${{ env.BUILD_TAG }}
         path: /out/*
 
-    - name: Create release
-      if: github.actor != 'dependabot[bot]'
-      # if: ${{ github.event_name == 'schedule' }}
-      uses: softprops/action-gh-release@v1
-      with:
-        files: /out/*
-        name: Rach Linups ${{ env.BUILD_TAG }}
-        tag_name: ${{ env.BUILD_TAG }}
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
     # - name: Create release
     #   if: github.actor != 'dependabot[bot]'
     #   # if: ${{ github.event_name == 'schedule' }}
-    #   uses: "marvinpinto/action-automatic-releases@latest"
+    #   uses: softprops/action-gh-release@v1
     #   with:
-    #     repo_token: "${{ secrets.GITHUB_TOKEN }}"
-    #     prerelease: false
-    #     automatic_release_tag: ${{ env.BUILD_TAG }}
-    #     title: Rach Linups ${{ env.BUILD_TAG }}
-    #     files: |
-    #       /out/*
+    #     files: /out/*
+    #     name: Rach Linups ${{ env.BUILD_TAG }}
+    #     tag_name: ${{ env.BUILD_TAG }}
+    #   env:
+    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Create release
+      if: github.actor != 'dependabot[bot]'
+      # if: ${{ github.event_name == 'schedule' }}
+      uses: "marvinpinto/action-automatic-releases@latest"
+      with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        prerelease: false
+        automatic_release_tag: ${{ env.BUILD_TAG }}
+        title: Rach Linups ${{ env.BUILD_TAG }}
+        files: |
+          /out/*
