@@ -3,7 +3,7 @@
 image_name="archlinux-$(date +%Y.%m.%d)-x86_64.iso"
 
 echo "install pkg"
-pacman -Syy git archiso mkinitcpio-archiso --noconfirm --needed
+pacman -Syy git archiso mkinitcpio-archiso archlinux-keyring --noconfirm --needed
 
 build_iso() {
   pacman -Scc --noconfirm --quiet
