@@ -70,6 +70,8 @@ _nm() {
 
 _key() {
   reflector -a 12 -l 15 -p https,http --sort rate --save /etc/pacman.d/mirrorlist
+  pacman -Scc --noconfirm --quiet
+  rm -rf /var/cache/pacman/pkg/*
   pacman-key --init
   pacman-key --populate
   pacman -Syy --noconfirm
@@ -118,7 +120,7 @@ _serv() {
 }
 
 _pkgs() {
-    pacman -Syy base-devel git --noconfirm --needed
+    # pacman -Syy base-devel git --noconfirm --needed
     cd /home/$isouser; git clone https://aur.archlinux.org/yay-bin.git
     chown -R $isouser:users /home/$isouser/yay-bin
     cd /home/$isouser/yay-bin; sudo -u $isouser makepkg -c -C -f -s --noconfirm --needed; pacman -U --noconfirm *.pkg.tar.zst

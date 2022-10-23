@@ -20,6 +20,10 @@ build_iso() {
   cat /usr/bin/mkarchiso | grep chroot.sh
   echo "START mkarchiso"
   mkarchiso -v -w /usr/share/archiso/configs/releng/work -o /out /usr/share/archiso/configs/releng/
+  cat <<EOF >>/usr/share/archiso/configs/releng/packages.x86_64
+base-devel
+git
+EOF
 }
 
 echo "build iso"
