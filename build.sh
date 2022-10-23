@@ -18,12 +18,13 @@ build_iso() {
   [[ $(grep chroot.sh /usr/bin/mkarchiso) ]] || \
   sed -i "/_mkairootfs_squashfs()/a [[ -e "$\{profile\}/chroot.sh" ]] && $\{profile\}/chroot.sh" /usr/bin/mkarchiso
   cat /usr/bin/mkarchiso | grep chroot.sh
-  echo "START mkarchiso"
-  mkarchiso -v -w /usr/share/archiso/configs/releng/work -o /out /usr/share/archiso/configs/releng/
+  echo "add pkgs"
   cat <<EOF >>/usr/share/archiso/configs/releng/packages.x86_64
 base-devel
 git
 EOF
+  echo "START mkarchiso"
+  mkarchiso -v -w /usr/share/archiso/configs/releng/work -o /out /usr/share/archiso/configs/releng/
 }
 
 echo "build iso"
