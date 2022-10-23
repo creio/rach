@@ -116,6 +116,13 @@ _serv() {
   systemctl set-default graphical.target
 }
 
+_pkgs() {
+    pacman -S base-devel git --noconfirm --needed
+    cd /home/$isouser; git clone https://aur.archlinux.org/yay-bin.git
+    chown -R $isouser:users /home/$isouser/yay-bin
+    cd /home/$isouser/yay-bin; sudo -u $isouser makepkg -c -C -f -s --noconfirm --needed; pacman -U --noconfirm *.pkg.tar.zst
+}
+
 _conf
 _perm
 _liveuser
@@ -123,6 +130,7 @@ _liveuser
 _key
 _drsed
 # _serv
+_pkgs
 
 # sed -i 's|GRUB_DISTRIBUTOR=.*|GRUB_DISTRIBUTOR=\"Rach\"|' /etc/default/grub
 # sed -i 's|\#GRUB_THEME=.*|GRUB_THEME=\/boot\/grub\/themes\/crimson\/theme.txt|g' /etc/default/grub
