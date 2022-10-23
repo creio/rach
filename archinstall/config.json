@@ -30,9 +30,7 @@
         "cd /home/creio; git clone https://aur.archlinux.org/yay-bin.git",
         "chown -R creio:users /home/creio/yay-bin",
         "usermod -g users -aG docker creio",
-        "cd /home/creio/yay-bin",
-        "sudo -u creio makepkg -s --noconfirm",
-        "pacman -U --noconfirm *.pkg.tar.zst"
+        "cd /home/creio/yay-bin; sudo -u creio makepkg -f -s --noconfirm; pacman -U --noconfirm *.pkg.tar.zst"
     ],
     "!root-password": "1",
     "!users": {
