@@ -37,6 +37,7 @@ _conf() {
   echo "EDITOR=${_EDITOR}" >> /etc/environment
   echo "QT_QPA_PLATFORMTHEME=qt5ct" >> /etc/environment
   sed -i '/User/s/^#\+//' /etc/sddm.conf
+  sed -i '/CheckSpace/s/^#\+//' /etc/pacman.conf
 }
 
 _perm() {
