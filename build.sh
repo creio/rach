@@ -2,7 +2,7 @@
 
 image_name="archlinux-$(date +%Y.%m.%d)-x86_64.iso"
 
-echo "install pkg"
+echo "install pkgs"
 pacman -Syy git archiso mkinitcpio-archiso archlinux-keyring --noconfirm --needed
 
 build_iso() {
@@ -12,17 +12,18 @@ build_iso() {
   pacman-key --populate
   pacman -Syy --quiet
 
+  echo "add pkgs"
+  cat <<EOF >>/usr/share/archiso/configs/releng/packages.x86_64
+base-devel
+git
+EOF
+
   echo "copy chroot.sh"
   cp -r chroot.sh /usr/share/archiso/configs/releng/
   echo $PWD
   [[ $(grep chroot.sh /usr/bin/mkarchiso) ]] || \
   sed -i "/_mkairootfs_squashfs()/a [[ -e "$\{profile\}/chroot.sh" ]] && $\{profile\}/chroot.sh" /usr/bin/mkarchiso
   cat /usr/bin/mkarchiso | grep chroot.sh
-  echo "add pkgs"
-  cat <<EOF >>/usr/share/archiso/configs/releng/packages.x86_64
-base-devel
-git
-EOF
   echo "START mkarchiso"
   mkarchiso -v -w /usr/share/archiso/configs/releng/work -o /out /usr/share/archiso/configs/releng/
 }
