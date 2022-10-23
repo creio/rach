@@ -1,4 +1,5 @@
 {
+    "version": "2.5.0",
     "audio": "pulseaudio",
     "bootloader": "systemd-bootctl",
     "gfx_driver": "All open-source (default)",
@@ -7,6 +8,7 @@
     "harddrives": [
         "/dev/sda"
     ],
+    "silent": false,
     "swap": true,
     "hostname": "box",
     "kernels": [
@@ -14,9 +16,10 @@
     ],
     "mirror-region": "Worldwide",
     "nic": {
-        "NetworkManager": true
+        "type": "nm"
     },
     "ntp": true,
+    "plugin": null,
     "profile": "minimal",
     "script": "guided",
     "services": ["docker", "NetworkManager"],
@@ -25,11 +28,13 @@
     "keyboard-language": "us",
     "keyboard-layout": "us",
     "timezone": "Europe/Moscow",
-    "packages": ["nano", "reflector", "docker", "git", "bash-completion", "htop", "zsh", "networkmanager"],
+    "packages": ["nano", "micro", "reflector", "docker", "git", "bash-completion", "htop", "zsh", "networkmanager"],
     "custom-commands": [
         "cd /home/creio; git clone https://aur.archlinux.org/yay-bin.git",
         "chown -R creio:users /home/creio/yay-bin",
-        "usermod -g users -aG docker creio"
+        "usermod -g users -aG docker creio",
+        "cd /home/creio/yay-bin",
+        "sudo -u creio makepkg -si --noconfirm"
     ],
     "!root-password": "1",
     "!users": {
