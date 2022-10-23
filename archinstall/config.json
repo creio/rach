@@ -9,7 +9,6 @@
     "kernels": [
         "linux"
     ],
-    "mirror-region": "Worldwide",
     "nic": {
         "type": "nm"
     },
@@ -17,13 +16,15 @@
     "plugin": null,
     "profile": "minimal",
     "script": "guided",
-    "services": ["docker", "NetworkManager"],
     "sys-encoding": "utf-8",
     "sys-language": "en_US",
     "keyboard-language": "us",
     "keyboard-layout": "us",
     "timezone": "Europe/Moscow",
+    "mirror-region": "Worldwide",
+    "parallel downloads": 3,
     "packages": ["nano", "micro", "reflector", "docker", "git", "bash-completion", "htop", "zsh", "networkmanager"],
+    "services": ["docker", "NetworkManager"],
     "custom-commands": [
         "cd /home/creio; git clone https://aur.archlinux.org/yay-bin.git",
         "chown -R creio:users /home/creio/yay-bin",

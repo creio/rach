@@ -11,7 +11,8 @@
                 "mountpoint": "/boot",
                 "size": "513MB",
                 "start": "5MB",
-                "type": "primary"
+                "type": "primary",
+                "wipe": true
             },
             {
                 "btrfs": {
@@ -25,13 +26,17 @@
                 },
                 "encrypted": false,
                 "filesystem": {
-                    "format": "btrfs"
+                    "format": "btrfs",
+                    "mount_options": [
+                        "compress=zstd"
+                    ]
                 },
                 "format": true,
                 "mountpoint": "/",
                 "size": "100%",
                 "start": "518MB",
-                "type": "primary"
+                "type": "primary",
+                "wipe": true
             }
         ],
         "wipe": true
