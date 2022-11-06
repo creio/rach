@@ -1,5 +1,5 @@
 {
-    "version": "2.5.0",
+    "version": "2.5.2",
     "audio": "none",
     "bootloader": "systemd-bootctl",
     "gfx_driver": "All open-source (default)",
@@ -22,9 +22,9 @@
     "keyboard-layout": "us",
     "timezone": "Europe/Moscow",
     "mirror-region": "Worldwide",
-    "parallel downloads": 3,
-    "packages": ["nano", "micro", "reflector", "docker", "git", "bash-completion", "htop", "zsh", "networkmanager"],
-    "services": ["docker", "NetworkManager"],
+    "parallel downloads": 5,
+    "packages": ["nano", "micro", "reflector", "docker", "git", "bash-completion", "htop", "zsh", "networkmanager", "openssh"],
+    "services": ["docker", "NetworkManager", "sshd"],
     "custom-commands": [
         "cd /home/creio; git clone https://aur.archlinux.org/yay-bin.git",
         "chown -R creio:users /home/creio/yay-bin",
