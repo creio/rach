@@ -17,7 +17,7 @@ jobs:
         - /sys/fs/cgroup:/sys/fs/cgroup
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Build iso
       run: |
@@ -29,7 +29,7 @@ jobs:
         echo "${{ env.image_name }}"
 
     - name: Upload Artifacts
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: ${{ env.BUILD_TAG }}
         path: /out/*
@@ -37,7 +37,7 @@ jobs:
     # - name: Create release
     #   if: github.actor != 'dependabot[bot]'
     #   # if: ${{ github.event_name == 'schedule' }}
-    #   uses: softprops/action-gh-release@v1
+    #   uses: softprops/action-gh-release@v3
     #   with:
     #     files: /out/*
     #     name: Rach Linups ${{ env.BUILD_TAG }}
