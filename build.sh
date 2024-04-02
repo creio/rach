@@ -3,6 +3,10 @@
 image_name="archlinux-$(date +%Y.%m.%d)-x86_64.iso"
 
 echo "install pkgs"
+rm -v /etc/pacman.d/gnupg/*.gpg && sed -i '1iallow-weak-key-signatures' /etc/pacman.d/gnupg/gpg.conf && \
+    pacman-key --init && pacman-key --populate && \
+    pacman -Syy --noconfirm archlinux-keyring mkinitcpio systemd lvm2 mdadm cryptsetup dbus
+    
 pacman -Syy git archiso mkinitcpio-archiso archlinux-keyring --noconfirm --needed
 
 build_iso() {
